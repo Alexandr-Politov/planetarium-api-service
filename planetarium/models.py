@@ -15,8 +15,8 @@ class ShowTheme(models.Model):
 class AstronomyShow(models.Model):
     title = models.CharField(max_length=255, unique=True)
     description = models.TextField()
-    show_theme = models.ForeignKey(
-        ShowTheme, on_delete=models.CASCADE, related_name="astronomy_shows"
+    show_theme = models.ManyToManyField(
+        ShowTheme, related_name="astronomy_shows"
     )
 
     class Meta:
