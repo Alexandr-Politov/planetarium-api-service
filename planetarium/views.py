@@ -9,24 +9,30 @@ from planetarium.models import (
     Ticket
 )
 from planetarium.serializers import (
-    AstronomyShowSerializer,
+    AstronomyShowRetrieveSerializer,
+    AstronomyShowCreateSerializer,
     ShowThemeSerializer,
     PlanetariumDomeSerializer,
     ShowSessionSerializer,
     ReservationSerializer,
-    TicketSerializer, AstronomyShowRetrieveSerializer, AstronomyShowCreateSerializer
+    TicketSerializer,
 )
 
 
 class AstronomyShowViewSet(viewsets.ModelViewSet):
-    queryset = AstronomyShow.objects.prefetch_related("show_theme")
+    queryset = AstronomyShow.objects.all()
 
     def get_serializer_class(self):
         if self.action in ("list", "retrieve"):
             return AstronomyShowRetrieveSerializer
-        if self.action == "create":
+        if self.action in ("create", "update", "partial_update"):
             return AstronomyShowCreateSerializer
-        return AstronomyShowSerializer
+
+    def get_queryset(self):
+        queryset = self.queryset
+        if self.action in ("list", "retrieve"):
+            return queryset.prefetch_related("show_theme")
+        return self.queryset
 
 
 class ShowThemeViewSet(viewsets.ModelViewSet):
