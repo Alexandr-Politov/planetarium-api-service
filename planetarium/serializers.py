@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from rest_framework.fields import SlugField
 
 from planetarium.models import (
     AstronomyShow,
@@ -44,6 +43,16 @@ class ShowSessionSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShowSession
         fields = ["id", "astronomy_show", "planetarium_dome", "show_time"]
+
+
+class ShowSessionListSerializer(ShowSessionSerializer):
+    astronomy_show = serializers.SlugRelatedField(
+        many=False, read_only=True, slug_field="title"
+    )
+    planetarium_dome = serializers.SlugRelatedField(
+        many=False, read_only=True, slug_field="name"
+    )
+    show_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M")
 
 
 class TicketSerializer(serializers.ModelSerializer):
