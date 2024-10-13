@@ -90,11 +90,35 @@ class TicketSerializer(serializers.ModelSerializer):
         return attrs
 
 
-class ReservationSerializer(serializers.ModelSerializer):
-    tickets = TicketSerializer(many=True, read_only=False, allow_empty=False)
+class TicketListSerializer(serializers.ModelSerializer):
+    show_session = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Ticket
+        fields = ["id", "row", "seat", "show_session"]
+
+    def get_show_session(self, obj):
+        return (f"{obj.show_session.astronomy_show.title}. "
+                f"{obj.show_session.show_time.strftime('%Y-%m-%d %H:%M')}")
+
+
+class TicketRetrieveSerializer(TicketSerializer):
+    show_session = ShowSessionRetrieveSerializer(many=False)
+
+
+class ReservationListSerializer(serializers.ModelSerializer):
+    tickets = TicketListSerializer(many=True)
     class Meta:
         model = Reservation
         fields = ["id", "created_at", "tickets"]
+
+
+class ReservationRetrieveSerializer(ReservationListSerializer):
+    tickets = TicketRetrieveSerializer(many=True)
+
+
+class ReservationCreateSerializer(ReservationListSerializer):
+    tickets = TicketSerializer(many=True, read_only=False, allow_empty=False)
 
     def create(self, validated_data):
         with transaction.atomic():
