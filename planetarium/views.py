@@ -31,10 +31,26 @@ class AstronomyShowViewSet(viewsets.ModelViewSet):
         if self.action in ("create", "update", "partial_update"):
             return AstronomyShowCreateSerializer
 
+    def separate_ids(self, string: str):
+        return [int(str_id) for str_id in string.split(",")]
+
     def get_queryset(self):
         queryset = self.queryset
-        if self.action in ("list", "retrieve"):
+
+        if self.action == "list":
+            queryset = queryset.prefetch_related("show_theme")
+            show_themes = self.request.query_params.get("show_theme", None)
+            title = self.request.query_params.get("title")
+            if show_themes:
+                show_theme_ids = self.separate_ids(show_themes)
+                queryset = queryset.filter(show_theme__id__in=show_theme_ids)
+            if title:
+                queryset = queryset.filter(title__icontains=title)
+            return queryset.distinct()
+
+        if self.action == "retrieve":
             return queryset.prefetch_related("show_theme")
+        
         return self.queryset
 
 
