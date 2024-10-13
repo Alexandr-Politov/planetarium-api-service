@@ -14,8 +14,10 @@ from planetarium.serializers import (
     ShowThemeSerializer,
     PlanetariumDomeSerializer,
     ShowSessionSerializer,
+    ShowSessionListSerializer,
+    ShowSessionRetrieveSerializer,
     ReservationSerializer,
-    TicketSerializer, ShowSessionListSerializer,
+    TicketSerializer,
 )
 
 
@@ -51,6 +53,8 @@ class ShowSessionViewSet(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action == "list":
             return ShowSessionListSerializer
+        if self.action == "retrieve":
+            return ShowSessionRetrieveSerializer
         return ShowSessionSerializer
 
     def get_queryset(self):

@@ -55,6 +55,11 @@ class ShowSessionListSerializer(ShowSessionSerializer):
     show_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M")
 
 
+class ShowSessionRetrieveSerializer(ShowSessionSerializer):
+    astronomy_show = AstronomyShowRetrieveSerializer(many=False)
+    planetarium_dome = PlanetariumDomeSerializer(many=False)
+
+
 class TicketSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ticket
