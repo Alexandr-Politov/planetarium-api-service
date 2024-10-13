@@ -1,5 +1,6 @@
 from django.db import transaction
 from rest_framework import serializers
+from rest_framework.validators import UniqueTogetherValidator
 
 from planetarium.models import (
     AstronomyShow,
@@ -65,6 +66,28 @@ class TicketSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ticket
         fields = ["id", "row", "seat", "show_session"]
+        validators = [UniqueTogetherValidator(
+            queryset=Ticket.objects.all(),
+            fields=["row", "seat", "show_session"],
+            message="A ticket with this seat-row "
+                    "for this show session already reserved."
+        )]
+
+
+    def validate(self, attrs):
+        Ticket.validate_position(
+            "seat",
+            attrs["seat"],
+            attrs["show_session"].planetarium_dome.seats_in_row,
+            serializers.ValidationError
+        )
+        Ticket.validate_position(
+            "row",
+            attrs["row"],
+            attrs["show_session"].planetarium_dome.rows,
+            serializers.ValidationError
+        )
+        return attrs
 
 
 class ReservationSerializer(serializers.ModelSerializer):

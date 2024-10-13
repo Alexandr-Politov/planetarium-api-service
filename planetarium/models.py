@@ -84,3 +84,46 @@ class Ticket(models.Model):
             fields=["row", "seat", "show_session"],
             name="unique_ticket",
         )]
+
+    def __str__(self):
+        return f"{self.row} {self.seat} {self.show_session}"
+
+    @staticmethod
+    def validate_position(
+            field: str,
+            position: int,
+            position_limit: int,
+            error_to_raise
+    ):
+        if not (1 <= position <= position_limit):
+            raise error_to_raise(
+                {field: f"{field.capitalize()} must be in range: "
+                         f"1 - {position_limit}, not {position}"}
+            )
+
+    def clean(self):
+        Ticket.validate_position(
+            "seat",
+            self.seat,
+            self.show_session.planetarium_dome.seats_in_row,
+            ValueError
+        )
+        Ticket.validate_position(
+            "row",
+            self.row,
+            self.show_session.planetarium_dome.rows,
+            ValueError
+        )
+
+    def save(
+        self,
+        *args,
+        force_insert=False,
+        force_update=False,
+        using=None,
+        update_fields=None,
+    ):
+        self.full_clean()
+        return super(Ticket, self).save(
+            force_insert, force_update, using, update_fields
+        )
