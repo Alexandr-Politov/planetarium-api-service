@@ -55,6 +55,10 @@ class ShowSessionListSerializer(ShowSessionSerializer):
         many=False, read_only=True, slug_field="name"
     )
     show_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M")
+    tickets_available = serializers.IntegerField(read_only=True)
+
+    class Meta(ShowSessionSerializer.Meta):
+        fields = ShowSessionSerializer.Meta.fields + ["tickets_available"]
 
 
 class ShowSessionRetrieveSerializer(ShowSessionSerializer):
