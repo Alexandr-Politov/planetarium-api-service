@@ -20,6 +20,7 @@ from planetarium.serializers import (
     ReservationRetrieveSerializer,
     ReservationCreateSerializer,
 )
+from planetarium.pagination import ReservationSetPagination
 
 
 class AstronomyShowViewSet(viewsets.ModelViewSet):
@@ -50,7 +51,7 @@ class AstronomyShowViewSet(viewsets.ModelViewSet):
 
         if self.action == "retrieve":
             return queryset.prefetch_related("show_theme")
-        
+
         return self.queryset
 
 
@@ -87,6 +88,7 @@ class ShowSessionViewSet(viewsets.ModelViewSet):
 
 class ReservationViewSet(viewsets.ModelViewSet):
     queryset = Reservation.objects.all()
+    pagination_class = ReservationSetPagination
 
     def get_serializer_class(self):
         if self.action == "list":
