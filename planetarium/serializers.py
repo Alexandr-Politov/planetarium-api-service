@@ -60,6 +60,14 @@ class ShowSessionListSerializer(ShowSessionSerializer):
 class ShowSessionRetrieveSerializer(ShowSessionSerializer):
     astronomy_show = AstronomyShowRetrieveSerializer(many=False)
     planetarium_dome = PlanetariumDomeSerializer(many=False)
+    taken_tickets = serializers.SerializerMethodField()
+
+    class Meta(ShowSessionSerializer.Meta):
+        fields = ShowSessionSerializer.Meta.fields + ["taken_tickets"]
+
+    def get_taken_tickets(self, obj):
+        tickets = obj.tickets.all()
+        return [f"row:{ticket.row}, seat:{ticket.seat}" for ticket in tickets]
 
 
 class TicketSerializer(serializers.ModelSerializer):
