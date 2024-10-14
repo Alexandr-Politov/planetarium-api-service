@@ -21,5 +21,7 @@ from debug_toolbar.toolbar import debug_toolbar_urls
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/planetarium/", include("planetarium.urls", namespace="planetarium")),
+    path("api/user/", include("user.urls", namespace="user")),
+    path("api/planetarium/",
+         include("planetarium.urls", namespace="planetarium")),
 ] + debug_toolbar_urls()
