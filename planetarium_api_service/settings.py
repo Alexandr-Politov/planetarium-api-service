@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 3d party apps:
     "rest_framework",
+    "rest_framework.authtoken",
     "debug_toolbar",
     # my_apps:
     "planetarium",
@@ -133,3 +134,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "user.User"
 
 INTERNAL_IPS = ["127.0.0.1"]
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES":(
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES":(
+        "planetarium.permissions.IsAdminAllOrIsAuthenticatedReadOnly",
+    ),
+}

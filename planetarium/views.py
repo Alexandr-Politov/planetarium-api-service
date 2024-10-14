@@ -1,5 +1,6 @@
 from django.db.models import Count, F
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 
 from planetarium.models import (
     AstronomyShow,
@@ -89,6 +90,7 @@ class ShowSessionViewSet(viewsets.ModelViewSet):
 class ReservationViewSet(viewsets.ModelViewSet):
     queryset = Reservation.objects.all()
     pagination_class = ReservationSetPagination
+    permission_classes = (IsAuthenticated,)
 
     def get_serializer_class(self):
         if self.action == "list":
