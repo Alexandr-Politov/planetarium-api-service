@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "debug_toolbar",
+    "drf_spectacular",
     # my_apps:
     "planetarium",
     "user",
@@ -142,4 +143,24 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES":(
         "planetarium.permissions.IsAdminAllOrIsAuthenticatedReadOnly",
     ),
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=20),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ROTATE_REFRESH_TOKENS": False,
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Planetarium API",
+    "DESCRIPTION": "API DRF-project for ordering book tickets online for ShowSessions in Planetarium",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "SWAGGER_UI_SETTINGS": {
+        "deepLinking": True,
+        "defaultModelRendering": "model",
+        "defaultModelsExpandDepth": 2,
+        "defaultModelExpandDepth": 2,
+    },
 }

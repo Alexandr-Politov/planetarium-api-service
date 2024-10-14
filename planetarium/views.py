@@ -1,4 +1,5 @@
 from django.db.models import Count, F
+from drf_spectacular.utils import extend_schema, OpenApiParameter
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
@@ -54,6 +55,24 @@ class AstronomyShowViewSet(viewsets.ModelViewSet):
             return queryset.prefetch_related("show_theme")
 
         return self.queryset
+
+    @extend_schema(
+        parameters=[
+            OpenApiParameter(
+                name="show_theme",
+                type={"type": "array", "items": {"type": "number"}},
+                description="Filter by show_theme ids (ex. ?show_theme=1,5)"
+            ),
+            OpenApiParameter(
+                name="title",
+                type=str,
+                description="Filter by part of the title (ex. ?title=universe)",
+            ),
+        ]
+    )
+    def list(self, request, *args, **kwargs):
+        """Get list of astronomy shows"""
+        return super().list(request, *args, **kwargs)
 
 
 class ShowThemeViewSet(viewsets.ModelViewSet):
