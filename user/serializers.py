@@ -4,16 +4,17 @@ from rest_framework import serializers
 
 class UserSerializer(serializers.ModelSerializer):
     full_name = serializers.SerializerMethodField()
+
     class Meta:
         model = get_user_model()
         fields = ("id", "email", "password", "full_name", "is_staff")
         read_only_fields = ("id", "is_staff")
         extra_kwargs = {
-             "password": {
-                 "write_only": True,
-                 "style": {"input_type": "password"},
-                 "label": "Password",
-                 "min_length": 8}
+            "password": {
+                "write_only": True,
+                "style": {"input_type": "password"},
+                "label": "Password",
+                "min_length": 8}
         }
 
     def get_full_name(self, obj):

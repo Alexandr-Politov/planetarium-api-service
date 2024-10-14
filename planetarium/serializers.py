@@ -29,6 +29,7 @@ class AstronomyShowRetrieveSerializer(AstronomyShowSerializer):
         many=True, read_only=True, slug_field="name"
     )
 
+
 class AstronomyShowCreateSerializer(AstronomyShowSerializer):
     show_theme = serializers.PrimaryKeyRelatedField(
         queryset=ShowTheme.objects.all(), many=True
@@ -85,7 +86,6 @@ class TicketSerializer(serializers.ModelSerializer):
                     "for this show session already reserved."
         )]
 
-
     def validate(self, attrs):
         Ticket.validate_position(
             "seat",
@@ -120,6 +120,7 @@ class TicketRetrieveSerializer(TicketSerializer):
 
 class ReservationListSerializer(serializers.ModelSerializer):
     tickets = TicketListSerializer(many=True)
+
     class Meta:
         model = Reservation
         fields = ["id", "created_at", "tickets"]

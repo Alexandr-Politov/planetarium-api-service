@@ -17,7 +17,6 @@ router.register("show-sessions", ShowSessionViewSet),
 router.register("reservations", ReservationViewSet),
 
 
-
 app_name = "planetarium"
 
 urlpatterns = [

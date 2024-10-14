@@ -66,7 +66,7 @@ class AstronomyShowViewSet(viewsets.ModelViewSet):
             OpenApiParameter(
                 name="title",
                 type=str,
-                description="Filter by part of the title (ex. ?title=universe)",
+                description="Filter by part of title (ex. ?title=universe)",
             ),
         ]
     )
@@ -100,8 +100,8 @@ class ShowSessionViewSet(viewsets.ModelViewSet):
         if self.action == "list":
             queryset = queryset.annotate(
                 tickets_available=F("planetarium_dome__rows")
-                                  * F("planetarium_dome__seats_in_row")
-                                  - Count("tickets")
+                * F("planetarium_dome__seats_in_row")
+                - Count("tickets")
             )
         return queryset
 

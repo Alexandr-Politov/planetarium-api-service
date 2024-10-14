@@ -38,6 +38,7 @@ class PlanetariumDome(models.Model):
     def __str__(self):
         return f"{self.name}: {self.rows} rows x {self.seats_in_row} seats"
 
+
 class ShowSession(models.Model):
     astronomy_show = models.ForeignKey(
         AstronomyShow, on_delete=models.CASCADE, related_name="sessions",
@@ -67,6 +68,7 @@ class Reservation(models.Model):
 
     def __str__(self):
         return str(self.created_at)
+
 
 class Ticket(models.Model):
     row = models.IntegerField()
@@ -98,7 +100,7 @@ class Ticket(models.Model):
         if not (1 <= position <= position_limit):
             raise error_to_raise(
                 {field: f"{field.capitalize()} must be in range: "
-                         f"1 - {position_limit}, not {position}"}
+                 f"1 - {position_limit}, not {position}"}
             )
 
     def clean(self):
