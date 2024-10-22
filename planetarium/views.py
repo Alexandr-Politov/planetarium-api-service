@@ -38,7 +38,7 @@ class AstronomyShowViewSet(viewsets.ModelViewSet):
         return [int(str_id) for str_id in string.split(",")]
 
     def get_queryset(self):
-        queryset = self.queryset
+        queryset = super().get_queryset()
 
         if self.action == "list":
             queryset = queryset.prefetch_related("show_theme")
@@ -96,7 +96,7 @@ class ShowSessionViewSet(viewsets.ModelViewSet):
         return ShowSessionSerializer
 
     def get_queryset(self):
-        queryset = self.queryset
+        queryset = super().get_queryset()
         if self.action == "list":
             queryset = queryset.annotate(
                 tickets_available=F("planetarium_dome__rows")
@@ -121,7 +121,8 @@ class ReservationViewSet(viewsets.ModelViewSet):
         return ReservationListSerializer
 
     def get_queryset(self):
-        return self.queryset.filter(user=self.request.user)
+        queryset = super().get_queryset()
+        return queryset.filter(user=self.request.user)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
