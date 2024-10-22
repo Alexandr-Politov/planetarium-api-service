@@ -1,0 +1,469 @@
+[
+{
+  "model": "planetarium.showtheme",
+  "pk": 1,
+  "fields": {
+    "name": "Universe Exploration"
+  }
+},
+{
+  "model": "planetarium.showtheme",
+  "pk": 2,
+  "fields": {
+    "name": "Solar System"
+  }
+},
+{
+  "model": "planetarium.showtheme",
+  "pk": 3,
+  "fields": {
+    "name": "Black Holes"
+  }
+},
+{
+  "model": "planetarium.showtheme",
+  "pk": 4,
+  "fields": {
+    "name": "Stellar Evolution"
+  }
+},
+{
+  "model": "planetarium.showtheme",
+  "pk": 5,
+  "fields": {
+    "name": "Exoplanets"
+  }
+},
+{
+  "model": "planetarium.astronomyshow",
+  "pk": 1,
+  "fields": {
+    "title": "Journey Through the Universe",
+    "description": "A detailed exploration of galaxies and the universe.",
+    "show_theme": [
+      1
+    ]
+  }
+},
+{
+  "model": "planetarium.astronomyshow",
+  "pk": 2,
+  "fields": {
+    "title": "The Solar System Adventure",
+    "description": "A virtual tour through the solar system�s planets.",
+    "show_theme": [
+      2
+    ]
+  }
+},
+{
+  "model": "planetarium.astronomyshow",
+  "pk": 3,
+  "fields": {
+    "title": "Black Holes: Mysteries of the Dark",
+    "description": "A deep dive into the science of black holes.",
+    "show_theme": [
+      3
+    ]
+  }
+},
+{
+  "model": "planetarium.astronomyshow",
+  "pk": 4,
+  "fields": {
+    "title": "The Life of Stars",
+    "description": "A show explaining the birth and death of stars.",
+    "show_theme": [
+      4
+    ]
+  }
+},
+{
+  "model": "planetarium.astronomyshow",
+  "pk": 5,
+  "fields": {
+    "title": "Alien Worlds: Exploring Exoplanets",
+    "description": "Discovering planets outside our solar system.",
+    "show_theme": [
+      5
+    ]
+  }
+},
+{
+  "model": "planetarium.astronomyshow",
+  "pk": 14,
+  "fields": {
+    "title": "The Universe and Beyond",
+    "description": "Embark on an awe-inspiring journey through the vast expanse of space. Explore the wonders of the universe, from the birth of stars to the discovery of distant exoplanets. Learn how astronomers uncover the secrets of our cosmic neighborhood and beyond, venturing into the unknown realms of space exploration.",
+    "show_theme": [
+      5,
+      1
+    ]
+  }
+},
+{
+  "model": "planetarium.planetariumdome",
+  "pk": 1,
+  "fields": {
+    "name": "Orion Dome",
+    "rows": 15,
+    "seats_in_row": 20
+  }
+},
+{
+  "model": "planetarium.planetariumdome",
+  "pk": 2,
+  "fields": {
+    "name": "Milky Way Theater",
+    "rows": 12,
+    "seats_in_row": 25
+  }
+},
+{
+  "model": "planetarium.planetariumdome",
+  "pk": 3,
+  "fields": {
+    "name": "Andromeda Dome",
+    "rows": 10,
+    "seats_in_row": 30
+  }
+},
+{
+  "model": "planetarium.planetariumdome",
+  "pk": 4,
+  "fields": {
+    "name": "Cosmos Cinema",
+    "rows": 18,
+    "seats_in_row": 16
+  }
+},
+{
+  "model": "planetarium.planetariumdome",
+  "pk": 5,
+  "fields": {
+    "name": "Nebula Observatory",
+    "rows": 14,
+    "seats_in_row": 22
+  }
+},
+{
+  "model": "planetarium.showsession",
+  "pk": 1,
+  "fields": {
+    "astronomy_show": 1,
+    "planetarium_dome": 1,
+    "show_time": "2024-10-10T18:00:00"
+  }
+},
+{
+  "model": "planetarium.showsession",
+  "pk": 2,
+  "fields": {
+    "astronomy_show": 2,
+    "planetarium_dome": 2,
+    "show_time": "2024-10-11T16:00:00"
+  }
+},
+{
+  "model": "planetarium.showsession",
+  "pk": 3,
+  "fields": {
+    "astronomy_show": 3,
+    "planetarium_dome": 3,
+    "show_time": "2024-10-12T20:00:00"
+  }
+},
+{
+  "model": "planetarium.showsession",
+  "pk": 4,
+  "fields": {
+    "astronomy_show": 4,
+    "planetarium_dome": 4,
+    "show_time": "2024-10-13T15:00:00"
+  }
+},
+{
+  "model": "planetarium.showsession",
+  "pk": 5,
+  "fields": {
+    "astronomy_show": 5,
+    "planetarium_dome": 5,
+    "show_time": "2024-10-14T19:00:00"
+  }
+},
+{
+  "model": "planetarium.reservation",
+  "pk": 1,
+  "fields": {
+    "user": 2,
+    "created_at": "2024-10-12T09:12:41.418"
+  }
+},
+{
+  "model": "planetarium.reservation",
+  "pk": 2,
+  "fields": {
+    "user": 3,
+    "created_at": "2024-10-12T09:12:57.627"
+  }
+},
+{
+  "model": "planetarium.reservation",
+  "pk": 3,
+  "fields": {
+    "user": 4,
+    "created_at": "2024-10-12T09:13:17.144"
+  }
+},
+{
+  "model": "planetarium.reservation",
+  "pk": 4,
+  "fields": {
+    "user": 2,
+    "created_at": "2024-10-12T09:13:29.832"
+  }
+},
+{
+  "model": "planetarium.reservation",
+  "pk": 5,
+  "fields": {
+    "user": 3,
+    "created_at": "2024-10-12T09:13:41.503"
+  }
+},
+{
+  "model": "planetarium.reservation",
+  "pk": 6,
+  "fields": {
+    "user": 1,
+    "created_at": "2024-10-13T08:16:35.195"
+  }
+},
+{
+  "model": "planetarium.reservation",
+  "pk": 7,
+  "fields": {
+    "user": 1,
+    "created_at": "2024-10-13T08:35:38.486"
+  }
+},
+{
+  "model": "planetarium.reservation",
+  "pk": 8,
+  "fields": {
+    "user": 1,
+    "created_at": "2024-10-13T10:13:50.652"
+  }
+},
+{
+  "model": "planetarium.reservation",
+  "pk": 9,
+  "fields": {
+    "user": 1,
+    "created_at": "2024-10-13T10:39:35.060"
+  }
+},
+{
+  "model": "planetarium.reservation",
+  "pk": 10,
+  "fields": {
+    "user": 1,
+    "created_at": "2024-10-13T10:43:18.094"
+  }
+},
+{
+  "model": "planetarium.ticket",
+  "pk": 1,
+  "fields": {
+    "row": 1,
+    "seat": 5,
+    "show_session": 1,
+    "reservation": 1
+  }
+},
+{
+  "model": "planetarium.ticket",
+  "pk": 2,
+  "fields": {
+    "row": 2,
+    "seat": 10,
+    "show_session": 2,
+    "reservation": 2
+  }
+},
+{
+  "model": "planetarium.ticket",
+  "pk": 3,
+  "fields": {
+    "row": 3,
+    "seat": 15,
+    "show_session": 3,
+    "reservation": 3
+  }
+},
+{
+  "model": "planetarium.ticket",
+  "pk": 4,
+  "fields": {
+    "row": 1,
+    "seat": 1,
+    "show_session": 4,
+    "reservation": 4
+  }
+},
+{
+  "model": "planetarium.ticket",
+  "pk": 5,
+  "fields": {
+    "row": 2,
+    "seat": 7,
+    "show_session": 5,
+    "reservation": 5
+  }
+},
+{
+  "model": "planetarium.ticket",
+  "pk": 6,
+  "fields": {
+    "row": 1,
+    "seat": 1,
+    "show_session": 1,
+    "reservation": 6
+  }
+},
+{
+  "model": "planetarium.ticket",
+  "pk": 7,
+  "fields": {
+    "row": 4,
+    "seat": 4,
+    "show_session": 1,
+    "reservation": 7
+  }
+},
+{
+  "model": "planetarium.ticket",
+  "pk": 8,
+  "fields": {
+    "row": 4,
+    "seat": 5,
+    "show_session": 1,
+    "reservation": 7
+  }
+},
+{
+  "model": "planetarium.ticket",
+  "pk": 9,
+  "fields": {
+    "row": 5,
+    "seat": 6,
+    "show_session": 1,
+    "reservation": 8
+  }
+},
+{
+  "model": "planetarium.ticket",
+  "pk": 10,
+  "fields": {
+    "row": 9,
+    "seat": 9,
+    "show_session": 4,
+    "reservation": 9
+  }
+},
+{
+  "model": "planetarium.ticket",
+  "pk": 11,
+  "fields": {
+    "row": 8,
+    "seat": 8,
+    "show_session": 1,
+    "reservation": 10
+  }
+},
+{
+  "model": "user.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$LKJRNewSMlqFHl4rSRggni$pq/RiQb0deymGMLuPdJJg+wh8J9+IZAEP7oezLI1cUE=",
+    "last_login": "2024-10-10T15:56:07.689",
+    "is_superuser": true,
+    "first_name": "Carl",
+    "last_name": "Sagan",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-10-10T14:07:09.368",
+    "email": "admin@admin.com",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$XNdVbNeTaMG1YgFNq7NWPj$KTx0DGanA1MV7c+SAWxW6ohl3681rLljTTkM3SwfP5Y=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Neil deGrasse",
+    "last_name": "Tyson",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-10-10T15:56:48.206",
+    "email": "user_1@test.com",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$N7kfQgSvuHKGmMeXucSnSe$Rcxe9iF7R0gnNz304LNc2vOxBjR9uZiDvHJFoTfRFFA=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Stephen",
+    "last_name": "Hawking",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-10-10T15:57:15.467",
+    "email": "user_2@test.com",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$vNYRBVzFsGvF1vpxw1mxQc$JzxR2FkMD0F3ImiindvzRvU4+yRyLDFIUr4fLuxf7qE=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Richard",
+    "last_name": "Dawkins",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-10-10T15:57:38.520",
+    "email": "user_3@test.com",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$938vbRzMEmMKWipUpaGfF5$K5VQu0yEsj7eNARXWHjRqJnu3R90L8ahKUcBohivGog=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Iosif",
+    "last_name": "Shklovsky",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-10-13T17:04:05.194",
+    "email": "user_4@test.com",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
