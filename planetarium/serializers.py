@@ -63,8 +63,8 @@ class ShowSessionListSerializer(ShowSessionSerializer):
 
 
 class ShowSessionRetrieveSerializer(ShowSessionSerializer):
-    astronomy_show = AstronomyShowRetrieveSerializer(many=False)
-    planetarium_dome = PlanetariumDomeSerializer(many=False)
+    astronomy_show = AstronomyShowRetrieveSerializer()
+    planetarium_dome = PlanetariumDomeSerializer()
     taken_tickets = serializers.SerializerMethodField()
 
     class Meta(ShowSessionSerializer.Meta):
@@ -131,7 +131,7 @@ class ReservationRetrieveSerializer(ReservationListSerializer):
 
 
 class ReservationCreateSerializer(ReservationListSerializer):
-    tickets = TicketSerializer(many=True, read_only=False, allow_empty=False)
+    tickets = TicketSerializer(many=True)
 
     def create(self, validated_data):
         with transaction.atomic():
